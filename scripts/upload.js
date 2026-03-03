@@ -27,6 +27,10 @@ function parseArgs(argv) {
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
     if (arg === '--secret-id' || arg === '--secret-key' || arg === '--region' || arg === '--bucket') {
+      if (i + 1 >= argv.length || argv[i + 1].startsWith('--')) {
+        console.error(`[ERROR] 选项 ${arg} 需要提供一个值`);
+        process.exit(1);
+      }
       args.options[arg.replace('--', '').replace(/-/g, '_')] = argv[++i];
     } else if (!arg.startsWith('--')) {
       args.positional.push(arg);
@@ -102,8 +106,9 @@ async function uploadFile(localPath, key, options = {}) {
       }
     });
 
-    // 生成访问URL
-    const url = `https://${bucket}.cos.${region}.myqcloud.com/${key}`;
+    // 生成访问URL（对key进行编码以支持中文和特殊字符）
+    const encodedKey = encodeURIComponent(key).replace(/%2F/g, '/');
+    const url = `https://${bucket}.cos.${region}.myqcloud.com/${encodedKey}`;
 
     return {
       success: true,
