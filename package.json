@@ -1,11 +1,12 @@
 {
   "name": "tencent-cos-upload-skill",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "腾讯云COS文件上传Skill",
   "main": "scripts/upload.js",
   "scripts": {
     "upload": "node scripts/upload.js",
-    "upload:lite": "node scripts/upload-lite.js"
+    "upload:lite": "node scripts/upload-lite.js",
+    "upload:smart": "node scripts/upload-smart.js"
   },
   "dependencies": {
     "cos-nodejs-sdk-v5": "^2.12.0"

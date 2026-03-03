@@ -12,3 +12,18 @@ SECURITY_AUDIT.md
 *.swo
 *~
 
+# COS Upload Skill - 配置文件
+.cosrc
+*.cosrc
+
+# 密钥文件
+*.pem
+*.key
+*.p12
+*.pfx
+
+# 测试生成的临时文件
+test-files/
+*.test.bin
+*.test.txt
+
