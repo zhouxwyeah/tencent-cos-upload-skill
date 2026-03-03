@@ -27,3 +27,4 @@ test-files/
 *.test.bin
 *.test.txt
 
+SECURITY.md
